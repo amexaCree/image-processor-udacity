@@ -21,3 +21,5 @@ jasmine.getEnv().addReporter(
     customProcessors: [CustomProcessor]
   }) as unknown as CustomReporter
 );
+
+// Cite - https://knowledge.udacity.com/questions/582324

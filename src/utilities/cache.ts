@@ -23,6 +23,8 @@ const cacheImageSrc = (url: string, filepath: string): void => {
 };
 
 // serve image from cache middleware
+// Cite - ideas from: https://medium.com/the-node-js-collection/simple-server-side-cache-for-express-js-with-node-js-45ff296ca0f0
+// Cite - ideas also from: https://blog.bitsrc.io/server-side-caching-in-expressjs-24038daec102
 const getCachedImage = (
   req: express.Request,
   res: express.Response,
