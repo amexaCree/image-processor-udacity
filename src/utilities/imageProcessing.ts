@@ -16,7 +16,7 @@ const transformImage = (
   const output = getOutputPath(name);
 
   // safe guard if thumbs directory gets deleted
-  // Cite - idea from: https://stackoverflow.com/questions/21194934/how-to-create-a-directory-if-it-doesnt-exist-using-node-js
+  // Cite - ideas from: https://stackoverflow.com/questions/21194934/how-to-create-a-directory-if-it-doesnt-exist-using-node-js
   if (!fs.existsSync(outputDir)) {
     fs.mkdirSync(outputDir, { recursive: true });
   }
