@@ -12,7 +12,11 @@
       "prettier"
     ],
     "rules": {
-      "prettier/prettier": 2 ,
+      "prettier/prettier": [2, 
+        {
+          "endOfLine": "auto"
+        }
+      ],
       "no-use-before-define": ["error", { "functions": true, "classes": true }],
       "no-var": "error",
       "prefer-const": "error"

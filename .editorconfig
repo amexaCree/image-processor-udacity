@@ -1,0 +1,42 @@
+# EditorConfig is awesome: https://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+# Unix-style newlines with a newline ending every file
+[*]
+insert_final_newline = true
+
+# Matches multiple files with brace expansion notation
+# Set default charset
+[*.{js,ts,py}]
+end_of_line = lf 
+charset = utf-8
+indent_style = space
+indent_size = 2
+
+## note ---
+## According to info on editorconfig extention, these settings only work on save ~
+## end_of_line (on save)
+## insert_final_newline (on save)
+## trim_trailing_whitespace (on save)
+## So... they essentially work in tandem or as support if also set on prettier.
+
+# 4 space indentation
+# [*.py]
+# indent_style = space
+# indent_size = 4
+
+# Tab indentation (no size specified)
+# [Makefile]
+# indent_style = tab
+
+# Indentation override for all JS under lib directory
+# [lib/**.js]
+# indent_style = space
+# indent_size = 2
+
+# Matches the exact files either package.json or .travis.yml
+[{package.json,.travis.yml}]
+indent_style = space
+indent_size = 2
