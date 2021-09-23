@@ -1,6 +1,6 @@
 import express from 'express';
 import cache from '../../utilities/cache';
-import transform from '../../utilities/transform';
+import transform from '../../utilities/imageProcessing';
 
 const images = express.Router();
 

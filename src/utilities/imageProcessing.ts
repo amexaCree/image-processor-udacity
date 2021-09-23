@@ -2,8 +2,8 @@ import express from 'express';
 import sharp from 'sharp';
 import isEmpty from 'lodash.isempty';
 import fs from 'fs';
-import { getInputPath, getOutputPath, outputDir } from '../utilities/imgPaths';
-import { getImageQueryParams } from '../utilities/imgQLib';
+import { getInputPath, getOutputPath, outputDir } from './imagePathBuilder';
+import { getImageQueryParams } from './imageQueryLib';
 import { cacheImageSrc } from './cache';
 
 // Creates transformed image and saves it to thumb images directory

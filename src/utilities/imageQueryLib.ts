@@ -15,6 +15,13 @@ const getParamNum = (value: unknown): number | null => {
   return num;
 };
 
+const isValidParam = (value: unknown): boolean => {
+  if (typeof value === 'undefined') {
+    return true;
+  }
+  return !isNaN(parseInt(value as string));
+};
+
 // Image param type - an array of image query parameters from the request
 type ImgQParams = [name: string, width: string, height: string];
 
@@ -31,4 +38,4 @@ const getImageQueryParams = (
   return [name, width, height];
 };
 
-export { getImageQueryParams };
+export { getImageQueryParams, isValidParam };

@@ -1,6 +1,6 @@
 import supertest from 'supertest';
 import app from '../index';
-import { transformImage } from '../utilities/transform';
+import { transformImage } from '../utilities/imageProcessing';
 
 const request = supertest(app);
 
@@ -16,18 +16,6 @@ describe('image processing api', () => {
       }
     );
   });
-
-  // it('should transform image with at least height or width param', (done) => {
-  //   transformImage('test', 200, null).then(
-  //     (response) => {
-  //       expect(response).toBeTruthy();
-  //       done();
-  //     },
-  //     (err) => {
-  //       done();
-  //     }
-  //   );
-  // });
 
   it('should not transform image without image filename', (done) => {
     transformImage('', 200, 100).then(
