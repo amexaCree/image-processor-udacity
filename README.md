@@ -25,18 +25,18 @@ npm run start
 
 1. Add image to assets/full folder in root directory of project (e.g. assets/full/test.jpg)
 
-2. Access api endpoint in browser with query parameters for image filename, thumb width and thumb height
+2. Access API endpoint in browser with query parameters for image filename, thumb width and thumb height
 
 3. Thumb of image with indicated width and height is created in the assets/thumb folder.
 
 
 
-### api endpoint
+### API endpoint
 ```sh
    /api/images
 ```
 
-### api endpoint with query parameters
+### API endpoint with query parameters
 
 ```sh
   /api/images?filename=test&width=200&height=100
