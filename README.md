@@ -23,23 +23,24 @@ npm run start
 
 ### Creating a thumb image
 
-1. Add image to assets/full folder in root directory of project (e.g. assets/full/test.jpg)
+1. Add image to assets/full folder in root directory of project (e.g. assets/full/test.jpg).
 
-2. Access API endpoint in browser with query parameters for image filename, thumb width and thumb height
+2. Start server with start script (shown above). The server is configured to run on localhost port 3000 (http:/localhost:3000).
 
-3. Thumb of image with indicated width and height is created in the assets/thumb folder.
+3. Access server images API endpoint in browser with query parameters for image filename, thumb width and thumb height (shown below).
+
+4. Thumb of image with indicated width and height is created in the assets/thumb folder.
 
 
-
-### API endpoint
+### Images API endpoint
 ```sh
-   /api/images
+GET http:/localhost:3000/api/images
 ```
 
-### API endpoint with query parameters
+### Images API endpoint with query parameters
 
 ```sh
-  /api/images?filename=test&width=200&height=100
+GET http:/localhost:3000/api/images?filename=test&width=200&height=100
 ```
 
 > Note -
