@@ -41,11 +41,22 @@ describe('image processing api', () => {
       });
   });
 
-  it('should throw error if any query param is missing', (done) => {
-    const name = 'test2';
+  it('should throw error for invalid height or width query param', (done) => {
+    const name = 'test';
     const width = 100;
     request
-      .get(`/api/images?filename=${name}&width=${width}&height=`)
+      .get(`/api/images?filename=${name}&width=${width}&height=test`)
+      .then((response) => {
+        expect(response.status).not.toEqual(200);
+        done();
+      });
+  });
+
+  it('should throw error if any query param is missing', (done) => {
+    const name = 'test';
+    const width = 100;
+    request
+      .get(`/api/images?filename=${name}&width=${width}`)
       .then((response) => {
         expect(response.status).not.toEqual(200);
         done();

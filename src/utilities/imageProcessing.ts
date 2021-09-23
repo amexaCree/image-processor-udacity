@@ -3,7 +3,7 @@ import sharp from 'sharp';
 import isEmpty from 'lodash.isempty';
 import fs from 'fs';
 import { getInputPath, getOutputPath, outputDir } from './imagePathBuilder';
-import { getImageQueryParams } from './imageQueryLib';
+import { getImageQueryParams, isValidParam } from './imageQueryLib';
 import { cacheImageSrc } from './cache';
 
 // Creates transformed image and saves it to thumb images directory
@@ -43,11 +43,22 @@ const transform = (
     return next();
   }
 
+  // undefined or empty string query values will throw error
   ['filename', 'width', 'height'].map((item) => {
     if (isEmpty(req.query[item])) {
       throw `Query Error: ${item} parameter missing from query.`;
     }
   });
+
+  // undefined filename query value will throw error
+  if (!req.query.filename) {
+    throw `Query Error: filename missing from query.`;
+  }
+
+  // only number or undefined size values will not throw error
+  if (!isValidParam(req.query.width) || !isValidParam(req.query.height)) {
+    throw `Query Error: width and/or height must be a number.`;
+  }
 
   // collect and process image query parameters
   const [name, width, height] = getImageQueryParams([
