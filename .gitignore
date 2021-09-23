@@ -1,0 +1,12 @@
+#ignore generated file and folders
+node_modules/
+build/
+
+#ignore generated images
+assets/thumb/**
+
+# macOS Files
+.DS_Store
+
+# for udacity workspace
+.ipynb_checkpoints
