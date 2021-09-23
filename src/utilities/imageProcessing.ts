@@ -13,7 +13,7 @@ const transformImage = (
   height: number | null
 ): Promise<unknown> => {
   const input = getInputPath(name);
-  const output = getOutputPath(name);
+  const output = getOutputPath(name, width, height);
 
   // safe guard if thumbs directory gets deleted
   // Cite - ideas from: https://stackoverflow.com/questions/21194934/how-to-create-a-directory-if-it-doesnt-exist-using-node-js
@@ -50,11 +50,6 @@ const transform = (
       throw `Query Error: ${item} parameter missing from query.`;
     }
   });
-
-  // undefined filename query value will throw error
-  if (!req.query.filename) {
-    throw `Query Error: filename missing from query.`;
-  }
 
   // only number or undefined size values will not throw error
   if (!isValidParam(req.query.width) || !isValidParam(req.query.height)) {

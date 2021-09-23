@@ -23,8 +23,10 @@ describe('image path methods', () => {
 
   it('get file path for output thumb image', () => {
     const fileName = 'GreenBeans';
-    expect(getOutputPath(fileName)).toEqual(
-      path.join(outputDir, `${fileName}_thumb.${imgExt}`)
+    const width = 200;
+    const height = 100;
+    expect(getOutputPath(fileName, width, height)).toEqual(
+      path.join(outputDir, `${fileName}_thumb_w200xh100.${imgExt}`)
     );
   });
 });
