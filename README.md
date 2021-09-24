@@ -44,6 +44,13 @@ GET /api/images
 GET /api/images?filename=test&width=200&height=100
 ```
 
+
+### Example URL - creates 300x200 thumb for fjord.jpg
+
+```sh
+http://localhost:3000/api/images?filename=fjord&width=300&height=200
+```
+
 > Note -
   This application currently supports jpeg (.jpg) images only.
 
