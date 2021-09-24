@@ -45,11 +45,9 @@ describe('image processing api', () => {
     );
     fspromises.access(thumbPath).then(
       () => {
-        console.log('access');
         done();
       },
       (err) => {
-        console.log('no access');
         expect(err).toBeFalsy();
         done();
       }
