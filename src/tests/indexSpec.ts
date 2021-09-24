@@ -1,5 +1,5 @@
 import supertest from 'supertest';
-import app from '../index';
+import app from '../app';
 const request = supertest(app);
 
 describe('server connection - endpoints', () => {

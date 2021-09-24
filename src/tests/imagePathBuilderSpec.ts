@@ -26,7 +26,7 @@ describe('image path methods', () => {
     const width = 200;
     const height = 100;
     expect(getOutputPath(fileName, width, height)).toEqual(
-      path.join(outputDir, `${fileName}_thumb_w200xh100.${imgExt}`)
+      path.join(outputDir, `${fileName}_thumb_w${width}xh${height}.${imgExt}`)
     );
   });
 });

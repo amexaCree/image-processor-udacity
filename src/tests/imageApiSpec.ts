@@ -1,51 +1,73 @@
+import { promises as fspromises } from 'fs';
+import { getOutputPath } from '../utilities/imagePathBuilder';
 import supertest from 'supertest';
-import app from '../index';
-import { transformImage } from '../utilities/imageProcessing';
+import app from '../app';
+// import { transformImage } from '../utilities/imageProcessing';
 
 const request = supertest(app);
 
 describe('image processing api', () => {
-  it('should transform image with name, width and height params', (done) => {
-    transformImage('test', 200, 100).then(
-      (res) => {
-        expect(res as string).toBeTruthy();
-        done();
-      },
-      () => {
-        done();
-      }
-    );
-  });
 
-  it('should not transform image without image filename', (done) => {
-    transformImage('', 200, 100).then(
+  // test image name + size properties for thumb
+  const imgProps = {
+    name: 'test',
+    width: 101,
+    height: 200
+  };
+
+  beforeAll((done) => {
+    const thumbPath = getOutputPath(
+      imgProps.name,
+      imgProps.width,
+      imgProps.height
+    );
+    fspromises.rm(thumbPath).then(
       () => {
         done();
       },
-      (err: Error) => {
-        expect(err).toBeTruthy();
+      (err) => {
         done();
       }
     );
   });
 
   it('should query /api/images route with image name, width and height successfully', (done) => {
-    const name = 'test';
-    const width = 100;
-    const height = 200;
     request
-      .get(`/api/images?filename=${name}&width=${width}&height=${height}`)
+      .get(
+        `/api/images?filename=${imgProps.name}&width=${imgProps.width}&height=${imgProps.height}`
+      )
       .then((response) => {
+        // console.log(response);
         expect(response.status).toEqual(200);
         done();
       });
   });
 
+  it('should have created thumb image correctly', (done) => {
+    const thumbPath = getOutputPath(
+      imgProps.name,
+      imgProps.width,
+      imgProps.height
+    );
+    fspromises.access(thumbPath).then(
+      () => {
+        console.log('access');
+        done();
+      },
+      (err) => {
+        console.log('no access');
+        expect(err).toBeFalsy();
+        done();
+      }
+    );
+  });
+
   it('should throw error for invalid height or width query param', (done) => {
-    const name = 'test';
-    const width = 100;
+    imgProps.width = 102;
     request
-      .get(`/api/images?filename=${name}&width=${width}&height=test`)
+      .get(
+        `/api/images?filename=${imgProps.name}&width=${imgProps.width}&height=test`
+      )
       .then((response) => {
         expect(response.status).not.toEqual(200);
         done();
@@ -53,10 +75,9 @@ describe('image processing api', () => {
   });
 
   it('should throw error if any query param is missing', (done) => {
-    const name = 'test';
-    const width = 100;
+    imgProps.width = 103;
     request
-      .get(`/api/images?filename=${name}&width=${width}`)
+      .get(`/api/images?filename=${imgProps.name}&width=${imgProps.width}`)
       .then((response) => {
         expect(response.status).not.toEqual(200);
         done();
@@ -64,11 +85,13 @@ describe('image processing api', () => {
   });
 
   it("should throw error if image doesn't exist", (done) => {
-    const name = 'test2';
-    const width = 100;
-    const height = 200;
+    imgProps.name = 'test2';
+    imgProps.width = 200;
+    imgProps.height = 300;
     request
-      .get(`/api/images?filename=${name}&width=${width}&height=${height}`)
+      .get(
+        `/api/images?filename=${imgProps.name}&width=${imgProps.width}&height=${imgProps.height}`
+      )
       .then((response) => {
         expect(response.status).not.toEqual(200);
         done();
