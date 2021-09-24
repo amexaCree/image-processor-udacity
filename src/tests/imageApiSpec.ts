@@ -20,9 +20,20 @@ describe('image processing api', () => {
       imgProps.width,
       imgProps.height
     );
-    fspromises.rm(thumbPath).then(() => {
-      done();
-    });
+    fspromises
+      .access(thumbPath)
+      .then(() => {
+        return fspromises.rm(thumbPath);
+      })
+      .then(
+        () => {
+          done();
+        },
+        (err: Error) => {
+          console.log(err.message);
+          done();
+        }
+      );
   });
 
   it('should query /api/images route with image name, width and height successfully', (done) => {
