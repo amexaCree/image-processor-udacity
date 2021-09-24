@@ -7,7 +7,6 @@ import app from '../app';
 const request = supertest(app);
 
 describe('image processing api', () => {
-
   // test image name + size properties for thumb
   const imgProps = {
     name: 'test',
@@ -21,14 +20,9 @@ describe('image processing api', () => {
       imgProps.width,
       imgProps.height
     );
-    fspromises.rm(thumbPath).then(
-      () => {
-        done();
-      },
-      (err) => {
-        done();
-      }
-    );
+    fspromises.rm(thumbPath).then(() => {
+      done();
+    });
   });
 
   it('should query /api/images route with image name, width and height successfully', (done) => {
