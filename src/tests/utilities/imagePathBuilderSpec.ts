@@ -5,7 +5,7 @@ import {
   outputDir,
   inputDir,
   imgExt
-} from '../utilities/imagePathBuilder';
+} from '../../utilities/imagePathBuilder';
 import path from 'path';
 
 describe('image path methods', () => {

@@ -2,7 +2,7 @@ import {
   cacheImageSrc,
   getImageCacheKey,
   getCacheData
-} from '../utilities/cache';
+} from '../../utilities/cache';
 
 describe('cache methods', () => {
   const url = '/api/images?filename=test&width=400&height=200';
