@@ -5,7 +5,7 @@ const routes = express.Router();
 
 routes.use('/images', images);
 
-routes.get('/', (req, res) => {
+routes.get('/', (_req: express.Request, res: express.Response): void => {
   res.send('this is the api route');
 });
 

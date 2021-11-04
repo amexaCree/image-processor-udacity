@@ -6,7 +6,7 @@ const app = express();
 app.use('/api', routes);
 
 app.get('/', (req, res) => {
-  res.send('Connected!');
+  res.send('Welcome to image processor!');
 });
 
 export default app;
